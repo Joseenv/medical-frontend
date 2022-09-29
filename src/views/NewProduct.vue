@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const API = 'http://localhost:9000/api/products';
+const API = 'https://backend-testing-production.up.railway.app/api/products';
 const nombre = ref('');
 const precio = ref(null);
 const descripcion = ref('');

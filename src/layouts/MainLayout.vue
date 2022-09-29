@@ -16,14 +16,6 @@ import HeaderMain from '../components/HeaderMain.vue';
 </template>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.4s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
 .main {
     max-width: 1440px;
     margin: 3.2rem auto;

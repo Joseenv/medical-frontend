@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-const API = 'http://localhost:9000/api/products'
+const API = 'https://backend-testing-production.up.railway.app/api/products'
 const products = ref([]);
 const router = useRouter()
 
