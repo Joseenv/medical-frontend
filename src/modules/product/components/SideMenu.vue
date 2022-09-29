@@ -41,7 +41,7 @@
             <div class="separator">
             </div>
             <div class="logout">
-                <img src="../assets/icons/logout.svg" alt="" class="logout__img">
+                <img src="@/assets/icons/logout.svg" alt="" class="logout__img">
                 <span>Cerrar Sesión</span>
             </div>
         </aside>

@@ -15,6 +15,7 @@ const router = createRouter({
     },
     {
       path:'/products',
+      redirect:'/products/lista-productos',
       ...productRouter
     },
     // {

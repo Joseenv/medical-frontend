@@ -2,17 +2,17 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">
-                <img src="../assets/img/logo.png" alt="Logo Medical" class="logo__img">
+                <img src="@/assets/img/logo.png" alt="Logo Medical" class="logo__img">
                 <h1 class="logo__title">Medical<span style="color: var(--color-secundary);">.</span></h1>
             </div>
             <div class="nav__search">
                 <input type="text" name="search" id="search" class="search__input" placeholder="Buscar producto...">
-                <img src="../assets/icons/search.svg" alt="Search Icon" class="search__img">
+                <img src="@/assets/icons/search.svg" alt="Search Icon" class="search__img">
             </div>
             <div class="nav__user">
                 <div class="user__icons">
-                    <img src="../assets/icons/notification.svg" alt="Notificaciones">
-                    <img src="../assets/icons/setting.svg" alt="Ajustes">
+                    <img src="@/assets/icons/notification.svg" alt="Notificaciones">
+                    <img src="@/assets/icons/setting.svg" alt="Ajustes">
                 </div>
                 <div class="user__separator">
                 </div>
@@ -21,7 +21,7 @@
                         <span class="info__name">Jose Navarro</span>
                         <span class="info__rol">Administrador</span>
                     </div>
-                    <img src="../assets/img/user.png" alt="User Image" class="details__img">
+                    <img src="@/assets/img/user.png" alt="User Image" class="details__img">
                 </div>
             </div>
         </nav>
