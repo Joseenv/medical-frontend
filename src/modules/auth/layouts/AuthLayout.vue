@@ -12,7 +12,7 @@ import PageHeader from '../components/PageHeader.vue'
                     class="side_img"
                 >
             </section>
-            <section class="auth__side">
+            <section class="auth__side auth__side-page">
                 <PageHeader/>
                 <router-view 
                     class="auth__view"
@@ -32,7 +32,7 @@ import PageHeader from '../components/PageHeader.vue'
 
 <style scoped>
     .auth {
-        max-width: 1280px;
+        max-width: 1024px;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -41,17 +41,23 @@ import PageHeader from '../components/PageHeader.vue'
     }
     .auth__container {
         width: 100%;
-        height: 890px;
+        height: calc(100vh - 7.2rem);
         display: flex;
         align-items: center;
         background-color: #fff;
         border-radius: 1rem;
     }
     .auth__side {
-        width: 640px;
-        height: 890px;
+        width: 50%;
+        height: 100%;
     }
     .side_img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        border-radius: 10px 0 0 10px;
+    }
+    .auth__side-page {
+        box-shadow: 0px 2px 32px rgba(69, 68, 89, 0.08);
     }
 </style>
