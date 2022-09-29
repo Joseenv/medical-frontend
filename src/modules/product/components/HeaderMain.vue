@@ -1,3 +1,9 @@
+<script setup>
+    const userInfo = localStorage.getItem('user')
+    const { name, lastname } = JSON.parse(userInfo)
+
+</script>
+
 <template>
     <header class="header">
         <nav class="nav">
@@ -18,7 +24,7 @@
                 </div>
                 <div class="user__details">
                     <div class="details__info">
-                        <span class="info__name">Jose Navarro</span>
+                        <span class="info__name"> {{ name }} {{ lastname }}</span>
                         <span class="info__rol">Administrador</span>
                     </div>
                     <img src="@/assets/img/user.png" alt="User Image" class="details__img">

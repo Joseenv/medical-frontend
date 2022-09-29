@@ -1,33 +1,28 @@
 <script setup>
-    import { ref } from 'vue';
-    const user = ref('');
-    const password = ref('');
+    import { reactive } from 'vue';
+    import useAuth from '../composables/useAuth.js';
 
-    const props = defineProps({
-        customAction: {
-            type: Function,
-            required: false
-        },
-        customText: {
-            type: String,
-            required: true
-        }
-    })
+    const { loginUser } = useAuth()
+    const data = reactive({
+        email: '',
+        password: ''
+    });
+
 </script>
 
 <template>
     <form 
         class="form"
-        @submit.prevent="props.customAction(user, password)"
+        @submit.prevent="loginUser( data )"
     >
         <div class="form__inputs">
             <div class="input__item">
-                <label for="user">Usuario:</label>
+                <label for="user">Email:</label>
                 <input 
-                    type="text" 
+                    type="text"
                     name="user" 
-                    placeholder="Nombre de usuario" 
-                    v-model="user"
+                    placeholder="Dirección de correo electrónico" 
+                    v-model="data.email"
                 >
             </div>
             <div class="input__item">
@@ -36,7 +31,7 @@
                     type="password" 
                     name="password" 
                     placeholder="Contraseña" 
-                    v-model="password"
+                    v-model="data.password"
                 >
             </div>
         </div>
@@ -45,7 +40,7 @@
                 class="action__login" 
                 type="submit"
             >
-                {{ props.customText }}
+                Iniciar sesión
             </button>
         </div>
     </form>

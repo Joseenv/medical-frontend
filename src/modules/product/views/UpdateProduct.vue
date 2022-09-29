@@ -1,38 +1,21 @@
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
+const API = 'https://backend-testing-production.up.railway.app/api/products';
 const router = useRouter()
 const route = useRoute()
 const product = ref({})
-const API = 'https://backend-testing-production.up.railway.app/api/products';
-const nombre = ref('');
-const precio = ref(null);
-const descripcion = ref('');
-const laboratorio = ref('');
-const stock = ref(null);
-const vencimiento = ref('');
-const imagen = ref('');
-const categoria = ref('');
 
 const getProductById = async () => {
     const response = await fetch(`${API}/${route.params.id}`);
     const data = await response.json();
     product.value = data;
-    nombre.value = product.value.nombre;
-    precio.value = product.value.precio;
-    descripcion.value = product.value.descripcion;
-    laboratorio.value = product.value.laboratorio;
-    stock.value = product.value.stock;
-    vencimiento.value = product.value.vencimiento;
-    imagen.value = product.value.imagen;
-    categoria.value = product.value.categoria;
 }
 
 onMounted(() => {
     getProductById()
 })
-
 
 const updateProduct = () => {
     fetch(`${API}/${product.value._id}`, {
@@ -40,16 +23,7 @@ const updateProduct = () => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-             "nombre"      :nombre.value,
-             "precio"      :precio.value,
-             "descripcion" :descripcion.value,
-             "laboratorio" :laboratorio.value,
-             "stock"       :stock.value ,
-             "vencimiento" :vencimiento.value,
-             "imagen"      :imagen.value,
-             "categoria"   :categoria.value
-        })
+        body: JSON.stringify(product.value)
     })
     .then(res => {
         if (res.ok) { 
@@ -58,7 +32,6 @@ const updateProduct = () => {
                 name: 'list-products'
             })
         }
-        else { console.log("HTTP request unsuccessful") }
     })
 }
 
@@ -82,7 +55,7 @@ const updateProduct = () => {
                         type="text" 
                         name="nombre" 
                         placeholder="Nombre del producto" 
-                        v-model="nombre" 
+                        v-model="product.nombre"
                     >
                 </div>
                 <div class="input__item">
@@ -90,7 +63,7 @@ const updateProduct = () => {
                     <input 
                         type="number" 
                         placeholder="S/." 
-                        v-model="precio" 
+                        v-model="product.precio" 
                     >
                 </div>
                 <div class="input__item">
@@ -99,7 +72,7 @@ const updateProduct = () => {
                         type="text" 
                         name="descripcion" 
                         placeholder="Descripción..." 
-                        v-model="descripcion" 
+                        v-model="product.descripcion" 
                     >
                 </div>
                 <div class="input__item">
@@ -108,7 +81,7 @@ const updateProduct = () => {
                         type="text" 
                         name="laboratorio" 
                         placeholder="Laboratorio de origen" 
-                        v-model="laboratorio"
+                        v-model="product.laboratorio"
                     >
                 </div>
                 <div class="input__item">
@@ -117,7 +90,7 @@ const updateProduct = () => {
                         type="number" 
                         name="stock" 
                         placeholder="Unidades en stock" 
-                        v-model="stock" 
+                        v-model="product.stock" 
                     >
                 </div>
                 <div class="input__item">
@@ -126,7 +99,7 @@ const updateProduct = () => {
                         type="text" 
                         name="vencimiento" 
                         placeholder="DD/MM/AAAA" 
-                        v-model="vencimiento" 
+                        v-model="product.vencimiento" 
                     >
                 </div>
                 <div class="input__item">
@@ -135,7 +108,7 @@ const updateProduct = () => {
                         type="text" 
                         name="imagen" 
                         placeholder="URL de imagen del producto" 
-                        v-model="imagen" 
+                        v-model="product.imagen" 
                     >
                 </div>
                 <div class="input__item">
@@ -144,7 +117,7 @@ const updateProduct = () => {
                         type="text" 
                         name="categoria" 
                         placeholder="Categoria del producto" 
-                        v-model="categoria" 
+                        v-model="product.categoria" 
                     >
                 </div>
             </div>
@@ -159,7 +132,7 @@ const updateProduct = () => {
                     type="submit" 
                     class="action__save"
                 >
-                    Agregar producto
+                    Actualizar producto
                 </button>
             </div>
         </form>

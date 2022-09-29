@@ -1,43 +1,33 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, reactive } from 'vue';
     import { useRouter } from 'vue-router';
     
     const router = useRouter()
-    const API = 'https://backend-testing-production.up.railway.app/products';
-    const nombre = ref('');
-    const precio = ref(null);
-    const descripcion = ref('');
-    const laboratorio = ref('');
-    const stock = ref(null);
-    const vencimiento = ref('');
-    const imagen = ref('');
-    const categoria = ref('');
+    const data = reactive({
+        nombre: '',
+        precio: 0,
+        descripcion: '',
+        laboratorio: '',
+        stock: 0,
+        vencimiento: '',
+        imagen: '',
+        categoria: '',
+    });
     
-    const addProduct = () => {
-        fetch(API, {
+    const addProduct = async () => {
+        await fetch('https://backend-testing-production.up.railway.app/api/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                "nombre"  : nombre.value,
-                "precio"   : precio.value,
-                "descripcion" : descripcion.value,
-                "laboratorio" : laboratorio.value,
-                "stock" : stock.value,
-                "vencimiento" : vencimiento.value,
-                "imagen" : imagen.value,
-                "categoria" : categoria.value,
-            })
+            body: JSON.stringify(data)
         })
         .then(res => {
             if (res.ok) { 
-                console.log("HTTP request successful")
                 router.push({
                     name: 'list-products'
                 })
             }
-            else { console.log("HTTP request unsuccessful") }
         })
     }
     </script>
@@ -54,35 +44,35 @@
                 <div class="form__inputs">
                     <div class="input__item">
                         <label for="name">Nombre <span>*</span></label>
-                        <input type="text" name="nombre" placeholder="Nombre del producto" v-model="nombre" >
+                        <input type="text" name="nombre" placeholder="Nombre del producto" v-model="data.nombre" >
                     </div>
                     <div class="input__item">
                         <label for="precio">Precio <span>*</span></label>
-                        <input type="number" placeholder="S/." v-model="precio" >
+                        <input type="number" placeholder="S/." v-model="data.precio" >
                     </div>
                     <div class="input__item">
                         <label for="descripcion">Descripción del producto <span>*</span></label>
-                        <input type="text" name="descripcion" placeholder="Descripción..." v-model="descripcion" >
+                        <input type="text" name="descripcion" placeholder="Descripción..." v-model="data.descripcion" >
                     </div>
                     <div class="input__item">
                         <label for="laboratorio">Laboratorio <span>*</span></label>
-                        <input type="text" name="laboratorio" placeholder="Laboratorio de origen" v-model="laboratorio" >
+                        <input type="text" name="laboratorio" placeholder="Laboratorio de origen" v-model="data.laboratorio" >
                     </div>
                     <div class="input__item">
                         <label for="stock">Stock <span>*</span></label>
-                        <input type="number" name="stock" placeholder="Unidades en stock" v-model="stock" >
+                        <input type="number" name="stock" placeholder="Unidades en stock" v-model="data.stock" >
                     </div>
                     <div class="input__item">
                         <label for="vencimiento">Fecha de vencimiento <span>*</span></label>
-                        <input type="text" name="vencimiento" placeholder="DD/MM/AAAA" v-model="vencimiento" >
+                        <input type="text" name="vencimiento" placeholder="DD/MM/AAAA" v-model="data.vencimiento" >
                     </div>
                     <div class="input__item">
                         <label for="imagen">Imagen <span>*</span></label>
-                        <input type="text" name="imagen" placeholder="URL de imagen del producto" v-model="imagen" >
+                        <input type="text" name="imagen" placeholder="URL de imagen del producto" v-model="data.imagen" >
                     </div>
                     <div class="input__item">
                         <label for="categoria">Categoría <span>*</span></label>
-                        <input type="text" name="categoria" placeholder="Categoria del producto" v-model="categoria" >
+                        <input type="text" name="categoria" placeholder="Categoria del producto" v-model="data.categoria" >
                     </div>
                 </div>
                 <div class="form__actions">

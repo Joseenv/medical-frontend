@@ -1,5 +1,5 @@
 <script setup>
-    import FormAuth from '../components/FormAuth.vue'
+    import FormLogin from '../components/FormLogin.vue'
 </script>
 
 <template>
@@ -9,14 +9,11 @@
                 <h2 class="header__title">Hola de nuevo</h2>
                 <p class="header__paragraph">Ingresa con tu cuenta para continuar</p>
             </header>
-            <FormAuth
-                :customAction="loginUser"
-                customText="Iniciar sesión"
-            />
+            <FormLogin/>
             <footer class="login__footer">
                 <p class="footer__paragraph">¿No tienes una cuenta? 
                     <router-link 
-                        to="/auth/register"
+                        :to="{  name: 'register' }"
                         class="footer__link"
                     >
                         Regístrate

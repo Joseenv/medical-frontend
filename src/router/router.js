@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import authRouter from '../modules/auth/router/index.js'
+import isAuthenticatedGuard from '../modules/auth/router/auth-guard.js'
 import productRouter from '../modules/product/router/index.js'
 
 const router = createRouter({
@@ -15,28 +16,10 @@ const router = createRouter({
     },
     {
       path:'/products',
+      beforeEnter: [ isAuthenticatedGuard ],
       redirect:'/products/lista-productos',
       ...productRouter
     },
-    // {
-    //   path: '/',
-    //   name: 'list-products',
-    //   component: ListProducts
-    // },
-    // {
-    //   path: '/nuevo-producto',
-    //   name: 'new-product',
-    //   component: () => import('../views/NewProduct.vue')
-    // },
-    // {
-    //   path: '/editar-producto/:id',
-    //   name: 'update-product',
-    //   component: () => import('../views/UpdateProduct.vue'),
-    //   props: (route) => { 
-    //     const id = Number( route.params.id )
-    //     return isNaN( id ) ? { id: 1} : { id } 
-    //   }
-    // }
   ]
 })
 

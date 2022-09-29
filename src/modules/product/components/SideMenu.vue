@@ -1,6 +1,9 @@
 <script setup>
     import { ref } from 'vue';
+    import useAuth from '../../auth/composables/useAuth';
     
+    const { logoutUser } = useAuth()
+
     
     </script>
     
@@ -40,7 +43,10 @@
             </nav>
             <div class="separator">
             </div>
-            <div class="logout">
+            <div 
+                class="logout"
+                @click="logoutUser"
+            >
                 <img src="@/assets/icons/logout.svg" alt="" class="logout__img">
                 <span>Cerrar Sesión</span>
             </div>
@@ -102,10 +108,18 @@
         display: flex;
         gap: .8rem;
         align-items: center;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 8px;
     }
     .logout span {
         font-size: 1.6rem;
         color: var(--text-inactive);
-        cursor: pointer;
+    }
+    .logout:hover {
+        background-color: #FFDCDC;
+    }
+    .logout:hover span {
+        color: var(--color-secundary);
     }
     </style>

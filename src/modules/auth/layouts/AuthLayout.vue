@@ -32,7 +32,7 @@ import PageHeader from '../components/PageHeader.vue'
 
 <style scoped>
     .auth {
-        max-width: 1024px;
+        max-width: 1280px;
         min-height: 100vh;
         display: flex;
         align-items: center;

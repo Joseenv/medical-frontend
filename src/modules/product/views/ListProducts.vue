@@ -53,15 +53,15 @@
                        <span class="product__name"> {{ product.nombre }} </span>
                        <div class="product__details">
                            <div class="details__lab">
-                               <img src="../assets/icons/bag-2.svg" alt="" class="lab__icon">
+                               <img src="@/assets/icons/bag-2.svg" alt="" class="lab__icon">
                                <span class="lab__name"> {{ product.laboratorio }} </span>    
                            </div>
                            <span class="details__price"> S/. {{ product.precio }} </span>
                        </div>
                    </div>
                    <div class="actions">
-                       <img src="../assets/icons/edit.png" alt="" class="actions__icon edit" @click="updateProduct(product._id)">
-                       <img src="../assets/icons/delete.png" alt="" class="actions__icon delete" @click="deleteUser(product._id)">
+                       <img src="@/assets/icons/edit.png" alt="" class="actions__icon edit" @click="updateProduct(product._id)">
+                       <img src="@/assets/icons/delete.png" alt="" class="actions__icon delete" @click="deleteUser(product._id)">
                    </div>
                </article>
            </section>
@@ -69,6 +69,7 @@
 </template>
     
 <style scoped>
+   
     .categorys{
         width: 100%;
         background-color: var(--background-component-color);
