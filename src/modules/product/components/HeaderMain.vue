@@ -1,6 +1,6 @@
 <script setup>
     const userInfo = localStorage.getItem('user')
-    const { name, lastname } = JSON.parse(userInfo)
+    const { name, lastname ,role} = JSON.parse(userInfo)
 
 </script>
 
@@ -25,7 +25,7 @@
                 <div class="user__details">
                     <div class="details__info">
                         <span class="info__name"> {{ name }} {{ lastname }}</span>
-                        <span class="info__rol">Administrador</span>
+                        <span class="info__rol">{{role == "client" ? "Cliente" : "Administrador"}}</span>
                     </div>
                     <img src="@/assets/img/user.png" alt="User Image" class="details__img">
                 </div>
@@ -114,7 +114,7 @@
 }
 .info__rol {
     color: var(--text-inactive);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 .details__img {
     width: 4rem;

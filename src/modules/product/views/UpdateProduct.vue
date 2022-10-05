@@ -55,7 +55,7 @@ const updateProduct = () => {
                         type="text" 
                         name="nombre" 
                         placeholder="Nombre del producto" 
-                        v-model="product.nombre"
+                        v-model="product.product.nombre"
                     >
                 </div>
                 <div class="input__item">
@@ -63,7 +63,7 @@ const updateProduct = () => {
                     <input 
                         type="number" 
                         placeholder="S/." 
-                        v-model="product.precio" 
+                        v-model="product.product.precio" 
                     >
                 </div>
                 <div class="input__item">
@@ -72,7 +72,7 @@ const updateProduct = () => {
                         type="text" 
                         name="descripcion" 
                         placeholder="Descripción..." 
-                        v-model="product.descripcion" 
+                        v-model="product.product.descripcion" 
                     >
                 </div>
                 <div class="input__item">
@@ -81,7 +81,7 @@ const updateProduct = () => {
                         type="text" 
                         name="laboratorio" 
                         placeholder="Laboratorio de origen" 
-                        v-model="product.laboratorio"
+                        v-model="product.product.laboratorio"
                     >
                 </div>
                 <div class="input__item">
@@ -90,7 +90,7 @@ const updateProduct = () => {
                         type="number" 
                         name="stock" 
                         placeholder="Unidades en stock" 
-                        v-model="product.stock" 
+                        v-model="product.product.stock" 
                     >
                 </div>
                 <div class="input__item">
@@ -99,7 +99,7 @@ const updateProduct = () => {
                         type="text" 
                         name="vencimiento" 
                         placeholder="DD/MM/AAAA" 
-                        v-model="product.vencimiento" 
+                        v-model="product.product.vencimiento" 
                     >
                 </div>
                 <div class="input__item">
@@ -108,7 +108,7 @@ const updateProduct = () => {
                         type="text" 
                         name="imagen" 
                         placeholder="URL de imagen del producto" 
-                        v-model="product.imagen" 
+                        v-model="product.product.imagen" 
                     >
                 </div>
                 <div class="input__item">
@@ -117,7 +117,7 @@ const updateProduct = () => {
                         type="text" 
                         name="categoria" 
                         placeholder="Categoria del producto" 
-                        v-model="product.categoria" 
+                        v-model="product.product.categoria.name" 
                     >
                 </div>
             </div>

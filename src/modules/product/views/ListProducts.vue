@@ -4,6 +4,9 @@
     const API = 'https://backend-testing-production.up.railway.app/api/products'
     const products = ref([]);
     const router = useRouter()
+
+    const userInfo = localStorage.getItem('user')
+    const { name, lastname ,role} = JSON.parse(userInfo)
     
     onMounted( async () => {
         getProducts()
@@ -12,6 +15,7 @@
     const getProducts = async () => {
         const response = await fetch(API);
         const data = await response.json();
+        //console.log(data)
         products.value = data;
     }
     
@@ -47,7 +51,7 @@
                <span class="categorys__title">Tus productos</span>
            </div>
            <section class="products">
-               <article class="product" v-for="product in products">
+               <article class="product" v-for="product in products.products">
                    <img :src="product.imagen" alt="" class="product__img">
                    <div class="product__info">
                        <span class="product__name"> {{ product.nombre }} </span>
@@ -59,7 +63,7 @@
                            <span class="details__price"> S/. {{ product.precio }} </span>
                        </div>
                    </div>
-                   <div class="actions">
+                   <div class="actions" v-show="role=='client'? false:true">
                        <img src="@/assets/icons/edit.png" alt="" class="actions__icon edit" @click="updateProduct(product._id)">
                        <img src="@/assets/icons/delete.png" alt="" class="actions__icon delete" @click="deleteUser(product._id)">
                    </div>

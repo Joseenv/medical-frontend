@@ -31,4 +31,7 @@ export const useAuthStore = defineStore('auth', () => {
     return {
         status, user, token, resfreshToken, getUserData, clearEntryes
     }
-})
+});
+
+
+ 
