@@ -6,8 +6,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
-## Actualizacion 01 (04/10)
-- Reparacion de errores en variables.
-    - Nav (ahora aparece el rol del usuario)
-    - Lista de productos
-    - Actualizacion de productos
+## Actualizacion 09 (06/10)
+- Refactorizacion de archivos
+- Se añadio el modulo de colaboradores
+- Correccion de errores

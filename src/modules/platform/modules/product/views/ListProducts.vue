@@ -1,47 +1,14 @@
 <script setup>
-    import { ref, onMounted } from 'vue';
-    import { useRouter } from 'vue-router';
-    const API = 'https://backend-testing-production.up.railway.app/api/products'
-    const products = ref([]);
-    const router = useRouter()
+    import { ref, onMounted } from 'vue'
+    import useProduct from '../composables/useProduct'
+    import ProductCard from '../components/ProductCard.vue'
 
-    const userInfo = localStorage.getItem('user')
-    const { name, lastname ,role} = JSON.parse(userInfo)
-    
+    const products = ref([])
+    const { getProducts } = useProduct();
+
     onMounted( async () => {
-        getProducts()
-    });
-    
-    const getProducts = async () => {
-        const response = await fetch(API);
-        const data = await response.json();
-        //console.log(data)
-        products.value = data;
-    }
-    
-    const deleteUser = async ( id ) => {
-        await fetch(`${API}/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json'
-            }   
-        })
-        .then(res => {
-            if (res.ok) { 
-                console.log("HTTP request successful")
-                router.go() 
-            }
-        })
-    }
-    
-    const updateProduct= ( id ) => {
-        router.push({
-            name: 'update-product',
-            params: {
-                id: id
-            }
-        })
-    }
+        products.value = await getProducts()
+    })
     
 </script>
     
@@ -51,23 +18,11 @@
                <span class="categorys__title">Tus productos</span>
            </div>
            <section class="products">
-               <article class="product" v-for="product in products.products">
-                   <img :src="product.imagen" alt="" class="product__img">
-                   <div class="product__info">
-                       <span class="product__name"> {{ product.nombre }} </span>
-                       <div class="product__details">
-                           <div class="details__lab">
-                               <img src="@/assets/icons/bag-2.svg" alt="" class="lab__icon">
-                               <span class="lab__name"> {{ product.laboratorio }} </span>    
-                           </div>
-                           <span class="details__price"> S/. {{ product.precio }} </span>
-                       </div>
-                   </div>
-                   <div class="actions" v-show="role=='client'? false:true">
-                       <img src="@/assets/icons/edit.png" alt="" class="actions__icon edit" @click="updateProduct(product._id)">
-                       <img src="@/assets/icons/delete.png" alt="" class="actions__icon delete" @click="deleteUser(product._id)">
-                   </div>
-               </article>
+               <ProductCard 
+                v-for="product in products" 
+                :key="product.id" 
+                :product="product" 
+               />
            </section>
        </section>
 </template>

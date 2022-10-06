@@ -1,8 +1,7 @@
 <script setup>
     import { ref, reactive } from 'vue';
-    import { useRouter } from 'vue-router';
+    import useProduct from '../composables/useProduct';
     
-    const router = useRouter()
     const data = reactive({
         nombre: '',
         precio: 0,
@@ -13,34 +12,17 @@
         imagen: '',
         categoria: '',
     });
-    
-    const addProduct = async () => {
-        await fetch('https://backend-testing-production.up.railway.app/api/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => {
-            if (res.ok) { 
-                router.push({
-                    name: 'list-products'
-                })
-            }
-        })
-    }
-    </script>
+    const { addProduct, cancelActions } = useProduct();
+</script>
     
     
     
     <template>
         <section class="section__adduser">
-    
             <div class="categorys">
                 <span class="categorys__title">Nuevo producto</span>
             </div>
-            <form class="form" @submit.prevent="addProduct">
+            <form class="form" @submit.prevent="addProduct(data)">
                 <div class="form__inputs">
                     <div class="input__item">
                         <label for="name">Nombre <span>*</span></label>
@@ -76,7 +58,7 @@
                     </div>
                 </div>
                 <div class="form__actions">
-                    <button class="action__cancel" @click="router.push({name: 'list-products'})">
+                    <button class="action__cancel" @click.prevent="cancelActions">
                         Cancelar
                     </button>
                     <button type="submit" class="action__save">

@@ -3,6 +3,10 @@ export default {
     component: () => import('../layouts/ProductLayout.vue'),
     children: [
         {
+            path :'',
+            redirect:'/platform/product/lista-productos',
+        },
+        {
             path: 'lista-productos',
             name: 'list-products',
             component: () => import('../views/ListProducts.vue')

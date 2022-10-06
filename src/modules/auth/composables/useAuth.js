@@ -35,7 +35,7 @@ const useAuth = () => {
             res.json().then( data => {
                 if ( data.ok) {
                     store.getUserData(data.user, data.token)
-                    router.push({ name: 'product' })
+                    router.push({ name: 'platform' })
                 }
             })
         })

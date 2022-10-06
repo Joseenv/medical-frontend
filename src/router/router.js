@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import authRouter from '../modules/auth/router/index.js'
-import isAuthenticatedGuard from '../modules/auth/router/auth-guard.js'
-import productRouter from '../modules/product/router/index.js'
+import platformRouter from '@/modules/platform/router/index.js'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,11 +14,9 @@ const router = createRouter({
       ...authRouter
     },
     {
-      path:'/products',
-      beforeEnter: [ isAuthenticatedGuard ],
-      redirect:'/products/lista-productos',
-      ...productRouter
-    },
+      path:'/platform',
+      ...platformRouter
+    }
   ]
 })
 
