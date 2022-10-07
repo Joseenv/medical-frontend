@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 
 const useProduct = () => {
+    
     const API = 'https://backend-testing-production.up.railway.app'
     const router = useRouter()
 
@@ -12,13 +13,19 @@ const useProduct = () => {
         return data.products
     }
 
+    const getProductById = async ( id ) => {
+        const response = await fetch(`${API}/api/products/${id}`);
+        const data = await response.json();
+        return data.product;
+    }
+
     const addProduct = async ( data ) => {
         await fetch(`${ API }/api/products`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify( data )
+            body: JSON.stringify(data)
         })
         .then(res => {
             if (res.ok) { 
@@ -29,8 +36,8 @@ const useProduct = () => {
         })
     }
 
-    const deleteProduct = async ( id ) => {
-        await fetch(`${API}/api/products/${id}`, {
+    const deleteProduct = ( id ) => {
+        fetch(`${API}/api/products/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
@@ -51,17 +58,45 @@ const useProduct = () => {
         })
     }
 
+    const updateProduct = ( id, data ) => {
+        fetch(`${API}/api/products/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => {
+            if (res.ok) { 
+                console.log("HTTP request successful")
+                router.push({
+                    name: 'list-products'
+                })
+            }
+        })
+    }
+
+    const goToInfoProduct = (id) => {
+        console.log(id)
+        router.push({
+            name: 'info-product',
+            params: { id }
+        })
+    }
+
     const cancelActions = () => {
         router.push({ name: 'list-products' })
     }
-
 
     return {
         addProduct,
         deleteProduct,
         goToUpdateProduct,
         cancelActions,
-        getProducts
+        getProducts,
+        getProductById,
+        updateProduct,
+        goToInfoProduct
     }
 }
 

@@ -1,7 +1,10 @@
 <script setup>
-    import { ref, reactive } from 'vue';
+    import { ref, reactive, onMounted} from 'vue';
     import useProduct from '../composables/useProduct';
+    import useCategory from '../composables/useCategory';
     
+    const { addProduct, cancelActions } = useProduct();
+    const { getCategories } = useCategory();
     const data = reactive({
         nombre: '',
         precio: 0,
@@ -11,8 +14,13 @@
         vencimiento: '',
         imagen: '',
         categoria: '',
-    });
-    const { addProduct, cancelActions } = useProduct();
+    })
+    const categories = ref([]);
+
+    onMounted(async () => {
+        categories.value = await getCategories();
+        console.log(categories.value);
+    })
 </script>
     
     
@@ -53,8 +61,22 @@
                         <input type="text" name="imagen" placeholder="URL de imagen del producto" v-model="data.imagen" >
                     </div>
                     <div class="input__item">
-                        <label for="categoria">Categoría <span>*</span></label>
-                        <input type="text" name="categoria" placeholder="Categoria del producto" v-model="data.categoria" >
+                        <label for="category-select">Categoría <span>*</span></label>
+                        <select 
+                            name="categories" 
+                            id="category-select"
+                            v-model="data.categoria"
+                        >
+                            <option value="" disabled selected>Seleccione una categoría</option>
+                            <option
+                                v-for="category in categories"
+                                :key="category._id"
+                                :value="category._id"
+                            >
+                                {{ category.name }}
+                            </option>
+                        </select>
+                        <!-- <input type="text" name="categoria" placeholder="Categoria del producto" v-model="data.categoria" > -->
                     </div>
                 </div>
                 <div class="form__actions">
@@ -155,5 +177,12 @@
         padding: 10px 24px;
         border-radius: 8px;
         cursor: pointer;
+    }
+    select {
+        padding: 16px 16px;
+        border: 1px solid var(--text-inactive);
+        border-radius: 8px;
+        width: 32rem;
+        font-weight: 400;
     }
     </style>

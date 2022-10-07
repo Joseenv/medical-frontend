@@ -1,40 +1,26 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRoute } from 'vue-router';
+import useProduct from '../composables/useProduct';
+import useCategory from '../composables/useCategory';
 
-const API = 'https://backend-testing-production.up.railway.app/api/products';
-const router = useRouter()
+const { getProductById, updateProduct } = useProduct();
+const { getCategories } = useCategory();
+
 const route = useRoute()
 const product = ref({})
+const categories = ref([]);
+const defaultCategory = ref(null);
 
-const getProductById = async () => {
-    const response = await fetch(`${API}/${route.params.id}`);
-    const data = await response.json();
-    product.value = data;
-}
-
-onMounted(() => {
-    getProductById()
+onMounted( async () => {
+    product.value = await getProductById( route.params.id )
+    categories.value = await getCategories()
+    setDefaultCategory()
 })
 
-const updateProduct = () => {
-    fetch(`${API}/${product.value._id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(product.value)
-    })
-    .then(res => {
-        if (res.ok) { 
-            console.log("HTTP request successful")
-            router.push({
-                name: 'list-products'
-            })
-        }
-    })
+const setDefaultCategory = () => {
+    console.log(defaultCategory.value);
 }
-
 </script>
 
 
@@ -46,7 +32,7 @@ const updateProduct = () => {
         </div>
         <form 
             class="form" 
-            @submit.prevent="updateProduct"
+            @submit.prevent="updateProduct(product._id, product)"
         >
             <div class="form__inputs">
                 <div class="input__item">
@@ -112,13 +98,21 @@ const updateProduct = () => {
                     >
                 </div>
                 <div class="input__item">
-                    <label for="categoria">Categoría <span>*</span></label>
-                    <input 
-                        type="text" 
-                        name="categoria" 
-                        placeholder="Categoria del producto" 
-                        v-model="product.categoria.name" 
+                    <label for="category-select">Categoría <span>*</span></label>
+                    <select 
+                        name="categories" 
+                        id="category-select"
+                        v-model="product.categoria"
                     >
+                        <option
+                            v-for="category in categories"
+                            :key="category._id"
+                            :value="category._id"
+                            ref="defaultCategory"
+                        >
+                            {{ category.name }}
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="form__actions">
@@ -227,5 +221,12 @@ const updateProduct = () => {
     padding: 10px 24px;
     border-radius: 8px;
     cursor: pointer;
+}
+select {
+    padding: 16px 16px;
+    border: 1px solid var(--text-inactive);
+    border-radius: 8px;
+    width: 32rem;
+    font-weight: 400;
 }
 </style>

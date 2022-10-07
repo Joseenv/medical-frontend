@@ -2,7 +2,7 @@
     import useProduct from '../composables/useProduct';
     import useUser from '../composables/useUser';
 
-    const { deleteProduct, goToUpdateProduct } = useProduct();
+    const { deleteProduct, goToUpdateProduct ,goToInfoProduct} = useProduct();
     const { getUserData } = useUser();
     const { role } = getUserData()
 
@@ -18,12 +18,12 @@
 
 <template>
     <article class="product">
-        <img :src="props.product.imagen" alt="" class="product__img">
+        <img :src="props.product.imagen" alt="" class="product__img" @click="goToInfoProduct(props.product._id)">
         <div class="product__info">
             <span class="product__name"> {{ props.product.nombre }} </span>
             <div class="product__details">
                 <div class="details__lab">
-                    <img src="@/assets/icons/bag-2.svg" alt="" class="lab__icon">
+                   <img src="@/assets/icons/bag-2.svg" alt="" class="lab__icon" >
                     <span class="lab__name"> {{ props.product.laboratorio }} </span>    
                 </div>
                 <span class="details__price"> S/. {{ props.product.precio }} </span>
