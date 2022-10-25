@@ -2,7 +2,7 @@
     import { ref, onMounted } from 'vue';
     import { useRouter, useRoute } from 'vue-router';
     
-    const API = 'https://backend-testing-production.up.railway.app/api/products';
+    const API = 'https://medical-farmacy.herokuapp.com/api/products';
     const router = useRouter()
     const route = useRoute()
     const product = ref({})
@@ -38,11 +38,11 @@
                     <p class="info__product__description">{{product.descripcion}}</p>
                     <div class="details__lab">
                    <img src="@/assets/icons/bag-2.svg" alt="" class="lab__icon" >
-                    <span class="lab__name"> {{ product.laboratorio }} </span>    
+                    <span class="lab__name">Vendido por {{ product.laboratorio }} </span>    
                 </div>
                 <div class="details__lab">
                    <img src="@/assets/icons/barcode.svg" alt="" class="lab__icon" >
-                    <span class="lab__name"> {{ product.vencimiento }} </span>    
+                    <span class="lab__name">Vencimiento: {{ product.vencimiento }} </span>    
                 </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
     .info__product__name{
         
         font-weight: 500;
-        font-size: 24px;
+        font-size: 2.4rem;
         line-height: 29px;
 
         color: #454459;
@@ -103,15 +103,14 @@
     .info__product__description{
         font-style: normal;
         font-weight: 400;
-        font-size: 20px;
+        font-size: 2rem;
         line-height: 24px;
-
         color: #454459;
     }
     .details__lab{
-    display: flex;
-    align-items: center;
-    gap: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
     }
     .info__product_image{
         width: 320px;
@@ -119,7 +118,7 @@
         margin-left: 87px;
         margin-top: 83px;
         margin-bottom: 120px;
-        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        /* box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3); */
         border-radius: 2px;
     }
     .detalle__product{
@@ -129,5 +128,9 @@
         margin-top: 120px;
         margin-left: 120px;
         justify-content: space-between;
+    }
+    .lab__name {
+        color: var(--text-inactive);
+        font-size: 1.6rem;
     }
     </style>

@@ -4,7 +4,7 @@ import { ref } from 'vue';
 
 const useProduct = () => {
     
-    const API = 'https://backend-testing-production.up.railway.app'
+    const API = 'https://medical-farmacy.herokuapp.com'
     const router = useRouter()
 
     const getProducts = async () => {
@@ -17,6 +17,12 @@ const useProduct = () => {
         const response = await fetch(`${API}/api/products/${id}`);
         const data = await response.json();
         return data.product;
+    }
+
+    const getProductByName = async ( name ) => {
+        const response = await fetch(`${API}/api/products?search=${name}`);
+        const data = await response.json();
+        return data.products;
     }
 
     const addProduct = async ( data ) => {
@@ -58,6 +64,13 @@ const useProduct = () => {
         })
     }
 
+    const goToSearchProducts = ( name ) => {
+        router.push({
+            name: 'search-product',
+            params: { name }
+        })
+    }
+
     const updateProduct = ( id, data ) => {
         fetch(`${API}/api/products/${id}`, {
             method: 'PUT',
@@ -96,7 +109,9 @@ const useProduct = () => {
         getProducts,
         getProductById,
         updateProduct,
-        goToInfoProduct
+        goToInfoProduct,
+        goToSearchProducts,
+        getProductByName
     }
 }
 

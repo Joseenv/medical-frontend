@@ -23,12 +23,20 @@ export default {
             }
           },
           {
-              path: 'info-producto/:id',
-              name: 'info-product',
-              component: () => import('../views/InfoProduct.vue'),
-              props: (route) => { 
-                const id = Number( route.params.id ) 
-              }
+            path: 'info-producto/:id',
+            name: 'info-product',
+            component: () => import('../views/InfoProduct.vue'),
+            props: (route) => { 
+              const id = Number( route.params.id ) 
             }
+          },
+          {
+            path: 'buscar/:name',
+            name: 'search-product',
+            component: () => import('../views/ProductsResult.vue'),
+            props: (route) => { 
+              const name = String( route.params.name ) 
+            }
+          }
     ]    
 }

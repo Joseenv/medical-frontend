@@ -1,7 +1,11 @@
 <script setup>
-    const userInfo = localStorage.getItem('user')
-    const { name, lastname ,role} = JSON.parse(userInfo)
+    import { ref } from 'vue';
+    import useProduct from '../modules/product/composables/useProduct';
 
+    const nameProduct = ref('');
+    const userInfo = localStorage.getItem('user')
+    const { goToSearchProducts } = useProduct();
+    const { name, lastname ,role} = JSON.parse(userInfo)
 </script>
 
 <template>
@@ -12,7 +16,15 @@
                 <h1 class="logo__title">Medical<span style="color: var(--color-secundary);">.</span></h1>
             </div>
             <div class="nav__search">
-                <input type="text" name="search" id="search" class="search__input" placeholder="Buscar producto...">
+                <input 
+                    type="text" 
+                    name="search" 
+                    id="search" 
+                    class="search__input" 
+                    placeholder="Buscar producto..." 
+                    v-model="nameProduct" 
+                    @keyup.enter="goToSearchProducts( nameProduct )"
+                >
                 <img src="@/assets/icons/search.svg" alt="Search Icon" class="search__img">
             </div>
             <div class="nav__user">
