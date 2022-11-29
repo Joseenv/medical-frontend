@@ -14,17 +14,17 @@
     
 <template>
     <section class="products__container">
-           <div class="categorys">
-               <span class="categorys__title">Tus productos</span>
-           </div>
-           <section class="products">
-               <ProductCard 
-                v-for="product in products" 
-                :key="product.id" 
-                :product="product" 
-               />
-           </section>
-       </section>
+        <div class="categorys">
+            <span class="categorys__title">Tus productos</span>
+        </div>
+        <section class="products">
+            <ProductCard 
+             v-for="product in products" 
+             :key="product.id" 
+             :product="product" 
+            />
+        </section>
+    </section>
 </template>
     
 <style scoped>

@@ -4,7 +4,7 @@ import { ref } from 'vue';
 
 const useProduct = () => {
     
-    const API = 'https://medical-farmacy.herokuapp.com'
+    const API = 'https://backend-testingg-production.up.railway.app'
     const router = useRouter()
 
     const getProducts = async () => {

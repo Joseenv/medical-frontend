@@ -12,8 +12,6 @@
             required: true
         }
     })
-    
-    console.log(props.product._id)
 </script>
 
 <template>

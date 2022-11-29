@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 
 const useAuth = () => {
     
-    const API = 'https://medical-farmacy.herokuapp.com'
+    const API = 'https://backend-testingg-production.up.railway.app'
     const store = useAuthStore()
     const router = useRouter()
 

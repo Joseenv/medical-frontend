@@ -1,5 +1,5 @@
 const useCategory = () => {
-    const API = 'https://medical-farmacy.herokuapp.com'
+    const API = 'https://backend-testingg-production.up.railway.app'
 
     const getCategories = async () => {
         const response = await fetch(`${ API }/api/category`)

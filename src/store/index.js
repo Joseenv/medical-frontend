@@ -28,10 +28,8 @@ export const useAuthStore = defineStore('auth', () => {
         resfreshToken.value = null
         localStorage.clear()
     }
+    
     return {
         status, user, token, resfreshToken, getUserData, clearEntryes
     }
 });
-
-
- 

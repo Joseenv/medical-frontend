@@ -1,45 +1,78 @@
-<template>
-  <section class="add_worker">
-    <div class="categorys">
-                <span class="categorys__title">Registrar colaborador</span>
-    </div>
-    <form class="form" @submit.prevent="onSubmit">
-                <div class="form__inputs">
-                    <div class="input__item">
-                        <label for="name">Nombre <span>*</span></label>
-                        <input type="text" name="nombre" placeholder="Nombre" v-model="data.nombre" >
-                    </div>
-                    <div class="input__item">
-                        <label for="lastname">Apellidos <span>*</span></label>
-                        <input type="text" name="lastname" placeholder="Apellidos" v-model="data.apellidos" >
-                    </div>
-                    
-                    <div class="input__item">
-                        <label for="email">Correo <span>*</span></label>
-                        <input type="text" name="email" placeholder="Correo electronico" v-model="data.email" >
-                    </div>
-                    
-                </div>
-                <div class="form__actions">
-                    <!-- <button class="action__cancel" @click.prevent="cancelActions">
-                        Cancelar
-                    </button>-->
-                    <button type="submit" class="action__save">
-                        Registrar colaborador
-                    </button>
-                </div>
-            </form>
-  </section>
-</template>
-
 <script setup>
     import { reactive } from 'vue';
-const data = reactive({
-        nombre: '',
-        apellidos: '',
-        correo: '',
+    import useWorker from '../composables/useWorker';
+
+    const { addWorker, cancelActions } = useWorker();
+    const data = reactive({
+        name: '',
+        lastname: '',
+        email: '',
+        role: ''
     });
 </script>
+
+
+<template>
+    <section class="add_worker">
+        <div class="categorys">
+            <span class="categorys__title">Agregar colaborador</span>
+        </div>
+        <form class="form" @submit.prevent="addWorker(data)">
+            <div class="form__inputs">
+                <div class="input__item">
+                    <label for="name">Nombre <span>*</span></label>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Ej: Jose" 
+                        v-model="data.name" 
+                    >
+                </div>
+                <div class="input__item">
+                    <label for="lastname">Apellidos <span>*</span></label>
+                    <input 
+                        type="text" 
+                        name="lastname" 
+                        placeholder="Ej: Navarro" 
+                        v-model="data.lastname" 
+                    >
+                </div>
+                <div class="input__item">
+                    <label for="email">Correo <span>*</span></label>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Ej: prueba@ejemplo.com" 
+                        v-model="data.email" 
+                    >
+                </div>
+                <div class="input__item">
+                    <label for="role-select">Rol <span>*</span></label>
+                    <select 
+                        name="role-select" 
+                        id="role-select"
+                        v-model="data.role"
+                    >
+                        <option value="" disabled selected>Seleccione un rol</option>
+                        <option value="employee">Empleado</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+            
+            </div>
+            <div class="form__actions">
+                <button class="action__cancel" @click.prevent="cancelActions">
+                    Cancelar
+                </button>
+                <button type="submit" class="action__save">
+                    Registrar colaborador
+                </button>
+            </div>
+        </form>
+    </section>
+</template>
+
+
 
 <style scoped>
     .add_worker{
@@ -127,5 +160,12 @@ const data = reactive({
         padding: 10px 24px;
         border-radius: 8px;
         cursor: pointer;
+    }
+    select {
+        padding: 16px 16px;
+        border: 1px solid var(--text-inactive);
+        border-radius: 8px;
+        width: 32rem;
+        font-weight: 400;
     }
     </style>

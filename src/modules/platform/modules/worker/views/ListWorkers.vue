@@ -1,135 +1,81 @@
+<script setup>
+    import { ref, onMounted } from 'vue'
+    import useWorker from '../composables/useWorker'
+    import WorkerCard from '../components/WorkerCard.vue'
+
+    const admins = ref([])
+    const employees = ref([])
+    const { getWorkerByRole } = useWorker();
+
+    onMounted( async () => {
+        admins.value = await getWorkerByRole('admin')
+        console.log(admins.value);
+        employees.value = await getWorkerByRole('employee')
+        console.log(employees.value);
+    })
+</script>
+
 <template>
-    <div class="listWorkers__seccion">
+  <div class="workers__section">
       <div class="listWorkers__container">
-        <div class="categorys">
-               <span class="categorys__title">Admistradores</span>
-           </div>
-        <div class="content">
-            
-            
-            <div class="box">
-                <div class="details__info">
-                    <span class="info__name"> Daniel Durand</span>
-                </div>
-                <img src="http://auvirtual.untels.edu.pe/MIFSLOCAL2018/imagenes2018/2017210560.jpg" alt="User Image" class="details__img">
-            </div>
-        
-        
-            <div class="box">
-                <div class="details__info">
-                    <span class="info__name"> Daniel Durand</span>
-                </div>
-                <img src="http://auvirtual.untels.edu.pe/MIFSLOCAL2018/imagenes2018/2017210560.jpg" alt="User Image" class="details__img">
-            </div>
-            <div class="box">
-                <div class="details__info">
-                    <span class="info__name"> Daniel Durand</span>
-                </div>
-                <img src="http://auvirtual.untels.edu.pe/MIFSLOCAL2018/imagenes2018/2017210560.jpg" alt="User Image" class="details__img">
-            </div>
-        
-        
-            
-        
-       
-        
-    </div>
-    </div>  
-    <div class="listWorkers__container">
-        <div class="categorys">
-               <span class="categorys__title">Colaboradores</span>
-           </div>
-        <div class="content">
-            
-            
-            <div class="box">
-                <div class="details__info">
-                    <span class="info__name"> Romel Car..</span>
-                </div>
-                <img src="http://auvirtual.untels.edu.pe/MIFSLOCAL2018/imagenes2018/2017230490.jpg" alt="User Image" class="details__img">
-            </div>
-        
-        
-            <div class="box">
-                <div class="details__info">
-                    <span class="info__name"> Romel Car..</span>
-                </div>
-                <img src="http://auvirtual.untels.edu.pe/MIFSLOCAL2018/imagenes2018/2017230490.jpg" alt="User Image" class="details__img">
-            </div>
-            
-        
-        
-        
-       
-        
-    </div>
-    </div>
-    </div>
-    
-    
-  </template>
+          <div class="categorys">
+              <span class="categorys__title">Admistradores</span>
+          </div>
+          <section class="workers">
+            <WorkerCard 
+                v-for="admin in admins" 
+                :key="admin.id" 
+                :worker="admin" 
+            />
+          </section>
+      </div>
+      <div class="listWorkers__container">
+          <div class="categorys">
+              <span class="categorys__title">Colaboradores</span>
+          </div>
+          <section class="workers">
+            <WorkerCard
+                v-for="employee in employees"
+                :key="employee._id"
+                :worker="employee"
+            />
+          </section>
+      </div>
+  </div>
+</template>
   
-  <script>
-  export default {
+
   
-  }
-  </script>
-  
-  <style>
-    
+<style scoped>
     .listWorkers__container{
-        width: 100%;
-        background-color: var(--background-component-color);
-        border-radius: 10px;
-        box-shadow: var(--shadow);
-        height: 30vh;
-        margin-bottom: 50px;
+        width: inherit;
+        margin-bottom: 6.4rem;
+        display: flex;
+        flex-direction: column;
     }
     .categorys{
-        
+        width: 100%;
+        background-color: var(--background-component-color);
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 3.2rem;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        height: 8rem;
     }
     .categorys__title{
         color: var(--color-primary);
-        font-size: 3.4rem;
+        font-size: 2.4rem;
         font-weight: 700;
-        padding: 20px;
     }
-  .content {
-    margin: 10px 3.2rem;
+  .workers {
+    margin: 3.2rem auto;
     width: auto;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3.2rem;
 }
 
-.box {
-  width: 250px;
-  height: auto;
-}
-
-.user__details {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-}
-.details__info{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-.info__name {
-    color: var(--color-primary);
-    font-size: 20px;
-    font-weight: 500;
-}
-.info__rol {
-    color: var(--text-inactive);
-    font-size: 1.5rem;
-}
-.details__img {
-    width: 7rem;
-    border-radius: 50%;
-}
   </style>
