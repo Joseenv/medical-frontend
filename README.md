@@ -14,9 +14,10 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - Un script test para la evaluacion de pruebas
 - ( ES NECESARIO EJECUTAR NPM INSTALL )
 
-## Actualizacion 12 (29/11)
+## Actualizacion 14 (30/11)
 - Refactorizacion de archivos
 - Correccion de errores
 - Se agregó la búsqueda de producto a través del campo del header.
 - Se agrego el Create y Delete del Worker
 - Se cambio el API a Railway
+- NEW : Se añadio el modal de confirmación de Delete User

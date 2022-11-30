@@ -1,7 +1,8 @@
 <script setup>
-    import useWorker from '../composables/useWorker';
+    import ConfirmationModal from './ConfirmationModal.vue';
+    import { ref } from 'vue';
 
-    const { deleteWorker } = useWorker()
+    const isOpen = ref(false);
     const props = defineProps({
         worker: {
             type: Object,
@@ -25,8 +26,18 @@
             <img 
                 src="@/assets/icons/delete.png" 
                 alt="" class="actions__icon delete"
-                @click="deleteWorker(props.worker.uid)"
+                @click="isOpen = true"
             >
+            <Teleport to="body">
+                <div class="modal" v-if="isOpen">
+                    <ConfirmationModal
+                        @close="isOpen = false"
+                        :name = "props.worker.name"
+                        :lastname = "props.worker.lastname"
+                        :workerid = "props.worker.uid"
+                    />
+                </div> 
+            </Teleport>
         </div>
     </article>
 </template>
@@ -79,5 +90,21 @@
     width: 22px;
     object-fit: cover;
     cursor: pointer;
+}
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal > div{
+    background-color: var(--background-component-color);
+    padding: 5rem;
+    border-radius: 1rem;
 }
 </style>
