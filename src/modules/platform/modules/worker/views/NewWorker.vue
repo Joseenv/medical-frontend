@@ -56,7 +56,6 @@
                         <option value="" disabled selected>Seleccione un rol</option>
                         <option value="employee">Empleado</option>
                         <option value="admin">Administrador</option>
-                        <option value="client">Cliente</option>
                     </select>
                 </div>
             
