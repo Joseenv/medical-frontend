@@ -1,8 +1,10 @@
 <script setup>
     import ConfirmationModal from './ConfirmationModal.vue';
     import { ref } from 'vue';
+    import useWorker from '../composables/useWorker';
 
     const isOpen = ref(false);
+    const { goToUpdateWorker } = useWorker();
     const props = defineProps({
         worker: {
             type: Object,
@@ -21,7 +23,8 @@
         <div class="actions">
             <img 
                 src="@/assets/icons/edit.png" 
-                alt="" class="actions__icon edit" 
+                alt="" class="actions__icon edit"
+                @click="goToUpdateWorker(props.worker.uid)" 
             >
             <img 
                 src="@/assets/icons/delete.png" 

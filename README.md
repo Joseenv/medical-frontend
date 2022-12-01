@@ -21,3 +21,5 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - Se agrego el Create y Delete del Worker
 - Se cambio el API a Railway
 - NEW : Se añadio el modal de confirmación de Delete User
+- NEW : Se agregó la función de Update Worker
+- NEW : Se agregó un rol más al dropdown de roles del Worker 

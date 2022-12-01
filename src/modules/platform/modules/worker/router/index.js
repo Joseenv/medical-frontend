@@ -11,6 +11,15 @@ export default {
             path: 'add-worker',
             name: 'add-worker',
             component: () => import('../views/NewWorker.vue')
-        }
+        },
+        {
+            path: 'editar-colaborador/:id',
+            name: 'update-worker',
+            component: () => import('../views/UpdateWorker.vue'),
+            props: (route) => { 
+              const id = Number( route.params.id )
+              return isNaN( id ) ? { id: 1} : { id } 
+            }
+          },
     ]    
 }

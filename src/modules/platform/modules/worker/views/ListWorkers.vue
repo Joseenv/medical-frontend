@@ -9,9 +9,7 @@
 
     onMounted( async () => {
         admins.value = await getWorkerByRole('admin')
-        console.log(admins.value);
         employees.value = await getWorkerByRole('employee')
-        console.log(employees.value);
     })
 </script>
 

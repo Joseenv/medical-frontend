@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 import useProduct from '../composables/useProduct';
 import useCategory from '../composables/useCategory';
 
-const { getProductById, updateProduct } = useProduct();
+const { getProductById, updateProduct, cancelActions } = useProduct();
 const { getCategories } = useCategory();
 
 const route = useRoute()
@@ -15,12 +15,8 @@ const defaultCategory = ref(null);
 onMounted( async () => {
     product.value = await getProductById( route.params.id )
     categories.value = await getCategories()
-    setDefaultCategory()
 })
 
-const setDefaultCategory = () => {
-    console.log(defaultCategory.value);
-}
 </script>
 
 
@@ -118,7 +114,7 @@ const setDefaultCategory = () => {
             <div class="form__actions">
                 <button 
                     class="action__cancel" 
-                    @click="router.push({name: 'list-products'})"
+                    @click="cancelActions"
                 >
                     Cancelar
                 </button>

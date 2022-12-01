@@ -1,23 +1,25 @@
 <script setup>
-    import { reactive } from 'vue';
-    import useWorker from '../composables/useWorker';
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router';
+import useWorker from '../composables/useWorker'
 
-    const { addWorker, cancelActions } = useWorker();
-    const data = reactive({
-        name: '',
-        lastname: '',
-        email: '',
-        role: ''
-    });
+const route = useRoute()
+const id = route.params.id;
+const { getWorkerById, updateWorker } = useWorker();
+const worker = ref({})
+
+onMounted(async () => {
+    worker.value = await getWorkerById(id)
+})
+
 </script>
-
 
 <template>
     <section class="add_worker">
         <div class="categorys">
-            <span class="categorys__title">Agregar colaborador</span>
+            <span class="categorys__title">Modificar colaborador</span>
         </div>
-        <form class="form" @submit.prevent="addWorker(data)">
+        <form class="form" @submit.prevent="updateWorker(id, worker)">
             <div class="form__inputs">
                 <div class="input__item">
                     <label for="name">Nombre <span>*</span></label>
@@ -25,7 +27,7 @@
                         type="text" 
                         name="name" 
                         placeholder="Ej: Jose" 
-                        v-model="data.name" 
+                        v-model="worker.name" 
                     >
                 </div>
                 <div class="input__item">
@@ -34,7 +36,7 @@
                         type="text" 
                         name="lastname" 
                         placeholder="Ej: Navarro" 
-                        v-model="data.lastname" 
+                        v-model="worker.lastname" 
                     >
                 </div>
                 <div class="input__item">
@@ -43,7 +45,7 @@
                         type="email" 
                         name="email" 
                         placeholder="Ej: prueba@ejemplo.com" 
-                        v-model="data.email" 
+                        v-model="worker.email" 
                     >
                 </div>
                 <div class="input__item">
@@ -51,9 +53,8 @@
                     <select 
                         name="role-select" 
                         id="role-select"
-                        v-model="data.role"
+                        v-model="worker.role"
                     >
-                        <option value="" disabled selected>Seleccione un rol</option>
                         <option value="employee">Empleado</option>
                         <option value="admin">Administrador</option>
                         <option value="client">Cliente</option>
@@ -66,14 +67,12 @@
                     Cancelar
                 </button>
                 <button type="submit" class="action__save">
-                    Registrar colaborador
+                    Actualizar colaborador
                 </button>
             </div>
         </form>
     </section>
 </template>
-
-
 
 <style scoped>
     .add_worker{
