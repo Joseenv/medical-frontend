@@ -1,87 +1,53 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router';
-import useWorker from '../composables/useWorker'
+    import { reactive } from 'vue';
+    import useCategory from '../composables/useCategory';
 
-const route = useRoute()
-const { getWorkerById, updateWorker, cancelActions } = useWorker();
-const id = route.params.id;
-const worker = ref({})
-
-onMounted(async () => {
-    worker.value = await getWorkerById(id)
-})
-
+    const { addCategory, cancelActions } = useCategory();
+    const data = reactive({
+        name: '',
+    });
 </script>
 
+
 <template>
-    <section class="add_worker">
-        <div class="categorys">
-            <span class="categorys__title">Modificar colaborador</span>
+    <section class="add_category">
+        <div class="categories">
+            <span class="categories__title">Agregar categoria</span>
         </div>
-        <form class="form" @submit.prevent="updateWorker(id, worker)">
+        <form class="form" @submit.prevent="addCategory(data)">
             <div class="form__inputs">
                 <div class="input__item">
                     <label for="name">Nombre <span>*</span></label>
                     <input 
                         type="text" 
                         name="name" 
-                        placeholder="Ej: Jose" 
-                        v-model="worker.name" 
+                        placeholder="Ej: Pastillas" 
+                        v-model="data.name" 
                     >
                 </div>
-                <div class="input__item">
-                    <label for="lastname">Apellidos <span>*</span></label>
-                    <input 
-                        type="text" 
-                        name="lastname" 
-                        placeholder="Ej: Navarro" 
-                        v-model="worker.lastname" 
-                    >
-                </div>
-                <div class="input__item">
-                    <label for="email">Correo <span>*</span></label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Ej: prueba@ejemplo.com" 
-                        v-model="worker.email" 
-                    >
-                </div>
-                <div class="input__item">
-                    <label for="role-select">Rol <span>*</span></label>
-                    <select 
-                        name="role-select" 
-                        id="role-select"
-                        v-model="worker.role"
-                    >
-                        <option value="employee">Empleado</option>
-                        <option value="admin">Administrador</option>
-                        <option value="client">Cliente</option>
-                    </select>
-                </div>
-            
             </div>
             <div class="form__actions">
                 <button class="action__cancel" @click.prevent="cancelActions">
                     Cancelar
                 </button>
                 <button type="submit" class="action__save">
-                    Actualizar colaborador
+                    Registrar categoría
                 </button>
             </div>
         </form>
     </section>
 </template>
 
+
+
 <style scoped>
-    .add_worker{
+    .add_category{
         display: flex;
         flex-direction: column;
         gap: 3.2rem;
         width: 100%;
     }
-    .categorys{
+    .categories{
         width: 100%;
         background-color: var(--background-component-color);
         display: flex;
@@ -109,7 +75,7 @@ onMounted(async () => {
         justify-content: center;
         margin: 3.2rem 0;
     }
-    .categorys__title{
+    .categories__title{
         color: var(--color-primary);
         font-size: 2.4rem;
         font-weight: 700;

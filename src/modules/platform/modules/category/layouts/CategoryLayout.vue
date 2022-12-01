@@ -5,7 +5,7 @@
         </transition>
     </router-view>
 </template>
-    
+
 <style scoped>
     .main {
         max-width: 1440px;

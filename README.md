@@ -23,3 +23,9 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - NEW : Se añadio el modal de confirmación de Delete User
 - NEW : Se agregó la función de Update Worker
 - NEW : Se agregó un rol más al dropdown de roles del Worker 
+
+## Actualizacion 15 (01/12)
+- Refactorizacion de archivos
+- NEW : Se agregó la función de Update Category, Add Category y Delete Category
+- NEW : Se añadio el modal de confirmación de Delete Category
+- NEW : Se añadió efecto hover al Side Menu
