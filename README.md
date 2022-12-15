@@ -6,13 +6,14 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
-## Actualizacion 13 (29/11) -- 06:10 PM
-- Se añadio:
-    - Axios (por si es necesario)
-    - Vitest
-    - Vitest UI
-- Un script test para la evaluacion de pruebas
-- ( ES NECESARIO EJECUTAR NPM INSTALL )
+## Actualizacion 16 (15/12)
+- Se añadio la libreria Cypress para realizar test funcionales y no funcionales
+
+## Actualizacion 15 (01/12)
+- Refactorizacion de archivos
+- NEW : Se agregó la función de Update Category, Add Category y Delete Category
+- NEW : Se añadio el modal de confirmación de Delete Category
+- NEW : Se añadió efecto hover al Side Menu
 
 ## Actualizacion 14 (30/11)
 - Refactorizacion de archivos
@@ -24,8 +25,13 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - NEW : Se agregó la función de Update Worker
 - NEW : Se agregó un rol más al dropdown de roles del Worker 
 
-## Actualizacion 15 (01/12)
-- Refactorizacion de archivos
-- NEW : Se agregó la función de Update Category, Add Category y Delete Category
-- NEW : Se añadio el modal de confirmación de Delete Category
-- NEW : Se añadió efecto hover al Side Menu
+## Actualizacion 13 (29/11) -- 06:10 PM
+- Se añadio:
+    - Axios (por si es necesario)
+    - Vitest
+    - Vitest UI
+- Un script test para la evaluacion de pruebas
+- ( ES NECESARIO EJECUTAR NPM INSTALL )
+
+
+
