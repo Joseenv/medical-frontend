@@ -1,7 +1,7 @@
 import { useRouter } from "vue-router"
 
 const useWorker = () => {
-    const API = 'https://backend-testingg-production.up.railway.app'
+    const API = 'https://backend-testing-1p5v.onrender.com'
     const router = useRouter()
 
     const addWorker = async ( data ) => {

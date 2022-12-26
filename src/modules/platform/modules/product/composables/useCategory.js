@@ -1,5 +1,5 @@
 const useCategory = () => {
-    const API = 'https://backend-testingg-production.up.railway.app'
+    const API = 'https://backend-testing-1p5v.onrender.com'
 
     const getCategories = async () => {
         const response = await fetch(`${ API }/api/category`)

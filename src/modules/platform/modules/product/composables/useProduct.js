@@ -4,7 +4,7 @@ import { ref } from 'vue';
 
 const useProduct = () => {
     
-    const API = 'https://backend-testingg-production.up.railway.app'
+    const API = 'https://backend-testing-1p5v.onrender.com'
     const router = useRouter()
 
     const getProducts = async () => {
