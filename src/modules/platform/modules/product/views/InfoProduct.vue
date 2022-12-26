@@ -9,7 +9,7 @@
     
     console.log('id: '+ route.params.id);
     const getProductById = async () => {
-        const response = await fetch(`${API}/${route.params.id}`);
+        const response = await fetch(`${API}/api/products/ ${route.params.id}`);
         const data = await response.json();
         product.value = data.product;
         console.log(product)
