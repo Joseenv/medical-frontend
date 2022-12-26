@@ -27,7 +27,8 @@ onMounted(async () => {
                     <input 
                         type="text" 
                         name="name" 
-                        placeholder="Ej: Pastillas" 
+                        placeholder="Ej: Pastillas"
+                        required 
                         v-model="category.name" 
                     >
                 </div>  
@@ -37,7 +38,7 @@ onMounted(async () => {
                     Cancelar
                 </button>
                 <button type="submit" class="action__save">
-                    Actualizar categoría
+                    Modificar
                 </button>
             </div>
         </form>

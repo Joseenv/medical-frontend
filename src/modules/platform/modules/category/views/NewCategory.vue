@@ -12,7 +12,7 @@
 <template>
     <section class="add_category">
         <div class="categories">
-            <span class="categories__title">Agregar categoria</span>
+            <span class="categories__title">Agregar categoría</span>
         </div>
         <form class="form" @submit.prevent="addCategory(data)">
             <div class="form__inputs">
@@ -22,6 +22,7 @@
                         type="text" 
                         name="name" 
                         placeholder="Ej: Pastillas" 
+                        required
                         v-model="data.name" 
                     >
                 </div>
@@ -31,7 +32,7 @@
                     Cancelar
                 </button>
                 <button type="submit" class="action__save">
-                    Registrar categoría
+                    Guardar
                 </button>
             </div>
         </form>

@@ -17,7 +17,7 @@ onMounted(async () => {
 <template>
     <section class="add_worker">
         <div class="categorys">
-            <span class="categorys__title">Modificar colaborador</span>
+            <span class="categorys__title">Modificar usuario</span>
         </div>
         <form class="form" @submit.prevent="updateWorker(id, worker)">
             <div class="form__inputs">
@@ -28,6 +28,7 @@ onMounted(async () => {
                         name="name" 
                         placeholder="Ej: Jose" 
                         v-model="worker.name" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -37,6 +38,7 @@ onMounted(async () => {
                         name="lastname" 
                         placeholder="Ej: Navarro" 
                         v-model="worker.lastname" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -46,6 +48,7 @@ onMounted(async () => {
                         name="email" 
                         placeholder="Ej: prueba@ejemplo.com" 
                         v-model="worker.email" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -54,6 +57,7 @@ onMounted(async () => {
                         name="role-select" 
                         id="role-select"
                         v-model="worker.role"
+                        required
                     >
                         <option value="employee">Empleado</option>
                         <option value="admin">Administrador</option>
@@ -67,7 +71,7 @@ onMounted(async () => {
                     Cancelar
                 </button>
                 <button type="submit" class="action__save">
-                    Actualizar colaborador
+                    Modificar
                 </button>
             </div>
         </form>

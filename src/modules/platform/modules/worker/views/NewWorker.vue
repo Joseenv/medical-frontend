@@ -15,7 +15,7 @@
 <template>
     <section class="add_worker">
         <div class="categorys">
-            <span class="categorys__title">Agregar colaborador</span>
+            <span class="categorys__title">Agregar usuario</span>
         </div>
         <form class="form" @submit.prevent="addWorker(data)">
             <div class="form__inputs">
@@ -26,6 +26,7 @@
                         name="name" 
                         placeholder="Ej: Jose" 
                         v-model="data.name" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -35,6 +36,7 @@
                         name="lastname" 
                         placeholder="Ej: Navarro" 
                         v-model="data.lastname" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -44,6 +46,7 @@
                         name="email" 
                         placeholder="Ej: prueba@ejemplo.com" 
                         v-model="data.email" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -52,6 +55,7 @@
                         name="role-select" 
                         id="role-select"
                         v-model="data.role"
+                        required
                     >
                         <option value="" disabled selected>Seleccione un rol</option>
                         <option value="employee">Empleado</option>
@@ -65,7 +69,7 @@
                     Cancelar
                 </button>
                 <button type="submit" class="action__save">
-                    Registrar colaborador
+                    Guardar
                 </button>
             </div>
         </form>

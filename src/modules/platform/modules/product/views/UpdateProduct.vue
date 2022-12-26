@@ -38,6 +38,7 @@ onMounted( async () => {
                         name="nombre" 
                         placeholder="Nombre del producto" 
                         v-model="product.nombre"
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -46,6 +47,7 @@ onMounted( async () => {
                         type="number" 
                         placeholder="S/." 
                         v-model="product.precio" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -55,6 +57,7 @@ onMounted( async () => {
                         name="descripcion" 
                         placeholder="Descripción..." 
                         v-model="product.descripcion" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -64,6 +67,7 @@ onMounted( async () => {
                         name="laboratorio" 
                         placeholder="Laboratorio de origen" 
                         v-model="product.laboratorio"
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -73,6 +77,7 @@ onMounted( async () => {
                         name="stock" 
                         placeholder="Unidades en stock" 
                         v-model="product.stock" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -82,6 +87,7 @@ onMounted( async () => {
                         name="vencimiento" 
                         placeholder="DD/MM/AAAA" 
                         v-model="product.vencimiento" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -91,6 +97,7 @@ onMounted( async () => {
                         name="imagen" 
                         placeholder="URL de imagen del producto" 
                         v-model="product.imagen" 
+                        required
                     >
                 </div>
                 <div class="input__item">
@@ -99,6 +106,7 @@ onMounted( async () => {
                         name="categories" 
                         id="category-select"
                         v-model="product.categoria"
+                        required
                     >
                         <option
                             v-for="category in categories"
@@ -122,7 +130,7 @@ onMounted( async () => {
                     type="submit" 
                     class="action__save"
                 >
-                    Actualizar producto
+                    Modificar
                 </button>
             </div>
         </form>

@@ -32,31 +32,31 @@
             <div class="form__inputs">
                 <div class="input__item">
                     <label for="name">Nombre <span>*</span></label>
-                    <input type="text" name="nombre" placeholder="Nombre del producto" v-model="data.nombre" >
+                    <input type="text" name="nombre" placeholder="Nombre del producto" v-model="data.nombre" required>
                 </div>
                 <div class="input__item">
                     <label for="precio">Precio <span>*</span></label>
-                    <input type="number" placeholder="S/." v-model="data.precio" >
+                    <input type="number" placeholder="S/." v-model="data.precio" required>
                 </div>
                 <div class="input__item">
                     <label for="descripcion">Descripción del producto <span>*</span></label>
-                    <input type="text" name="descripcion" placeholder="Descripción..." v-model="data.descripcion" >
+                    <input type="text" name="descripcion" placeholder="Descripción..." v-model="data.descripcion" required>
                 </div>
                 <div class="input__item">
                     <label for="laboratorio">Laboratorio <span>*</span></label>
-                    <input type="text" name="laboratorio" placeholder="Laboratorio de origen" v-model="data.laboratorio" >
+                    <input type="text" name="laboratorio" placeholder="Laboratorio de origen" v-model="data.laboratorio" required>
                 </div>
                 <div class="input__item">
                     <label for="stock">Stock <span>*</span></label>
-                    <input type="number" name="stock" placeholder="Unidades en stock" v-model="data.stock" >
+                    <input type="number" name="stock" placeholder="Unidades en stock" v-model="data.stock" required>
                 </div>
                 <div class="input__item">
                     <label for="vencimiento">Fecha de vencimiento <span>*</span></label>
-                    <input type="text" name="vencimiento" placeholder="DD/MM/AAAA" v-model="data.vencimiento" >
+                    <input type="text" name="vencimiento" placeholder="DD/MM/AAAA" v-model="data.vencimiento" required>
                 </div>
                 <div class="input__item">
                     <label for="imagen">Imagen <span>*</span></label>
-                    <input type="text" name="imagen" placeholder="URL de imagen del producto" v-model="data.imagen" >
+                    <input type="text" name="imagen" placeholder="URL de imagen del producto" v-model="data.imagen" required>
                 </div>
                 <div class="input__item">
                     <label for="category-select">Categoría <span>*</span></label>
@@ -64,6 +64,7 @@
                         name="categories" 
                         id="category-select"
                         v-model="data.categoria"
+                        required
                     >
                         <option value="" disabled selected>Seleccione una categoría</option>
                         <option
@@ -82,7 +83,7 @@
                     Cancelar
                 </button>
                 <button type="submit" class="action__save">
-                    Agregar producto
+                    Guardar
                 </button>
             </div>
         </form>
