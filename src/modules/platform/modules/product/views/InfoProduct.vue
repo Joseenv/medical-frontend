@@ -2,7 +2,7 @@
     import { ref, onMounted } from 'vue';
     import { useRouter, useRoute } from 'vue-router';
     
-    const API = 'https://medical-farmacy.herokuapp.com/api/products';
+    const API = 'https://backend-testing-1p5v.onrender.com';
     const router = useRouter()
     const route = useRoute()
     const product = ref({})
@@ -17,11 +17,8 @@
     console.log(product.value);
     onMounted(() => {
         getProductById()
-    })
-    
-    
-    
-    </script>
+    })    
+</script>
     
     
     <template>
